@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Flower Classifier</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 40px 48px;
+            max-width: 480px;
+            width: 90%;
+            box-shadow: 0 12px 40px rgba(46, 125, 50, 0.15);
+        }
+        h1 {
+            text-align: center;
+            color: #2e7d32;
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #66bb6a;
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            color: #388e3c;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #c8e6c9;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #66bb6a;
+        }
+        .hint {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 3px;
+        }
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #43a047, #2e7d32);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Iris Flower Classifier</h1>
+        <p class="subtitle">Enter flower measurements to identify the species</p>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label>Sepal Length (cm)</label>
+                <input type="number" name="sepal_length" step="0.1" min="0" required placeholder="e.g. 5.1">
+                <div class="hint">Typical range: 4.3 - 7.9</div>
+            </div>
+            <div class="form-group">
+                <label>Sepal Width (cm)</label>
+                <input type="number" name="sepal_width" step="0.1" min="0" required placeholder="e.g. 3.5">
+                <div class="hint">Typical range: 2.0 - 4.4</div>
+            </div>
+            <div class="form-group">
+                <label>Petal Length (cm)</label>
+                <input type="number" name="petal_length" step="0.1" min="0" required placeholder="e.g. 1.4">
+                <div class="hint">Typical range: 1.0 - 6.9</div>
+            </div>
+            <div class="form-group">
+                <label>Petal Width (cm)</label>
+                <input type="number" name="petal_width" step="0.1" min="0" required placeholder="e.g. 0.2">
+                <div class="hint">Typical range: 0.1 - 2.5</div>
+            </div>
+            <button type="submit">Classify Flower</button>
+        </form>
+    </div>
+</body>
+</html>

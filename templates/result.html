@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - {{ species }}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 40px 48px;
+            max-width: 480px;
+            width: 90%;
+            box-shadow: 0 12px 40px rgba(46, 125, 50, 0.15);
+            text-align: center;
+        }
+        .species-icon {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #2e7d32;
+            font-size: 1.6rem;
+            margin-bottom: 4px;
+        }
+        .species-name {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin: 10px 0 20px;
+            padding: 12px 24px;
+            border-radius: 14px;
+            display: inline-block;
+        }
+        .setosa { background: #fff3e0; color: #e65100; }
+        .versicolor { background: #e8eaf6; color: #283593; }
+        .virginica { background: #fce4ec; color: #880e4f; }
+
+        .features {
+            text-align: left;
+            background: #f1f8e9;
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+        .features h3 {
+            color: #558b2f;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .feature-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .feature-row span:last-child {
+            font-weight: bold;
+            color: #333;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: linear-gradient(135deg, #43a047, #2e7d32);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="species-icon">
+            {% if species == "Setosa" %}🌼
+            {% elif species == "Versicolor" %}🌸
+            {% else %}🌺
+            {% endif %}
+        </div>
+        <h1>Predicted Species</h1>
+        <div class="species-name {{ species|lower }}">Iris {{ species }}</div>
+
+        <div class="features">
+            <h3>Your Measurements</h3>
+            <div class="feature-row"><span>Sepal Length</span><span>{{ features[0] }} cm</span></div>
+            <div class="feature-row"><span>Sepal Width</span><span>{{ features[1] }} cm</span></div>
+            <div class="feature-row"><span>Petal Length</span><span>{{ features[2] }} cm</span></div>
+            <div class="feature-row"><span>Petal Width</span><span>{{ features[3] }} cm</span></div>
+        </div>
+
+        <a href="/" class="back-btn">Classify Another Flower</a>
+    </div>
+</body>
+</html>
